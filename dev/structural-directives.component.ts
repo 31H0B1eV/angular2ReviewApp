@@ -47,7 +47,7 @@ import {UnlessDirective} from "./unless.directive";
         <input type="text" #condition (keyup)="0">
       </div>
       <br>
-      <div *myUnless="condition.value != false">
+      <div *myUnless="condition.value != 'false'">
         Only shown if 'false' is entered!
       </div>
     </section>
