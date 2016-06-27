@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit, Renderer} from 'angular2/core';
+import {Directive, ElementRef} from 'angular2/core';
 
 @Directive({
   selector: '[myHighlight]',
@@ -13,7 +13,7 @@ export class HighlightDirective {
   private _defaultColor: 'green';
   highlightColor: string;
 
-  constructor(private _elRef: ElementRef, private _renderer: Renderer ) {}
+  constructor(private _elRef: ElementRef) {}
 
   onMouseEnter() {
     this.highlight(this.highlightColor || this._defaultColor);
