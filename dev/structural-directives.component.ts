@@ -15,9 +15,17 @@ import { Component } from 'angular2/core';
         Number is greater than 10
       </div>
     </section>
+    <section class="directive">
+      <h2>*ngFor</h2>
+      <div>
+        <ul>
+          <li *ngFor="#item of list, #i = index">{{ item }} {{ i }}</li>
+        </ul>
+      </div>
+    </section>
   `
 })
 
 export class StructuralDirectivesComponent {
-
+  list = [ "apple", "milk", "bread" ];
 }
