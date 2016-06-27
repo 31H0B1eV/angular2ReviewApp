@@ -1,5 +1,7 @@
 import { Component } from 'angular2/core';
 import {ShoppingListNewItemComponent} from "./shopping-list-new-item.component";
+import {ListItem} from "../list-item";
+import {ShoppingListItemComponent} from "./shopping-list-item.component";
 
 @Component({
   selector: 'shopping-list',
@@ -11,21 +13,28 @@ import {ShoppingListNewItemComponent} from "./shopping-list-new-item.component";
       <h3>MyList</h3>
       <div class="list">
         <ul>
-          <li *ngFor="#item of listItems">{{ item.name }} | ({{ item.amount }})</li>
+          <li *ngFor="#item of listItems" (click)="onSelect(item)">
+            {{ item.name }} ({{ item.amount }})
+          </li>
         </ul>
       </div>
     </section>
-    <section>
-      Edit Items
+    <section *ngIf="selectedItem != null">
+      <shopping-list-item [item]="selectedItem"></shopping-list-item>
     </section>
   `,
-  directives: [ShoppingListNewItemComponent]
+  directives: [ShoppingListNewItemComponent, ShoppingListItemComponent]
 })
 
 export class SoppingListComponent {
-  listItems = new Array<{ name: string, amount: number }>();
+  listItems = new Array<ListItem>();
+  selectedItem: ListItem;
 
-  onItemAdded(item: { name: string, amount: number }) {
+  onItemAdded(item: ListItem) {
     this.listItems.push({ name: item.name, amount: item.amount });
+  }
+
+  onSelect(item: ListItem) {
+    this.selectedItem = item;
   }
 }
