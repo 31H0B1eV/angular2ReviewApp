@@ -20,7 +20,7 @@ import {ShoppingListItemComponent} from "./shopping-list-item.component";
       </div>
     </section>
     <section *ngIf="selectedItem != null">
-      <shopping-list-item [item]="selectedItem"></shopping-list-item>
+      <shopping-list-item [item]="selectedItem" (removed)="onRemove($event)"></shopping-list-item>
     </section>
   `,
   directives: [ShoppingListNewItemComponent, ShoppingListItemComponent]
@@ -36,5 +36,10 @@ export class SoppingListComponent {
 
   onSelect(item: ListItem) {
     this.selectedItem = item;
+  }
+
+  onRemove(item: ListItem) {
+    this.listItems.splice(this.listItems.indexOf(item), 1);
+    this.selectedItem = null;
   }
 }

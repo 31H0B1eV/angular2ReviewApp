@@ -1,4 +1,5 @@
-import { Component } from 'angular2/core';
+import {Component, EventEmitter} from 'angular2/core';
+import {ListItem} from "../list-item";
 
 @Component({
   selector: 'shopping-list-item',
@@ -11,15 +12,17 @@ import { Component } from 'angular2/core';
       <label for="item-amt">Amount</label>
       <input type="text" id="item-amt" [(ngModel)]="item.amount">
     </div>
-    <button class="red" (click)="onDelete()">Delete Item</button>
+    <button class="danger" (click)="onDelete()">Delete Item</button>
   `,
-  inputs: ['item']
+  inputs: ['item'],
+  outputs: ['removed']
 })
 
 export class ShoppingListItemComponent {
   item = { name: '', amount: 0 };
+  removed = new EventEmitter<ListItem>();
 
   onDelete() {
-
+    this.removed.emit(this.item);
   }
 }

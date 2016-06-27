@@ -49,6 +49,7 @@ button {
 
 button:hover {
   background-color: #ccc;
+  cursor: pointer;
 }
 
 button.danger {
@@ -60,6 +61,7 @@ button.danger {
 button.danger:hover {
   background-color: #b8282a;
   border: 1px solid tomato;
+  cursor: pointer;
 }
 
 section {
